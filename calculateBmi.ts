@@ -12,4 +12,16 @@ function calculateBmi(height: number, weight: number): BMIClassification {
     return 'Obesity (Class 3)';
 }
 
-console.log(calculateBmi(180, 74));
+function parseArgs(args: Array<string>) {
+    if (args.length > 4) throw new Error('too many arguments');
+    if (args.length < 4) throw new Error('too few arguments');
+
+    const [height, weight] = args.slice(2).map(Number);
+
+    if (Number.isNaN(height)) throw new Error('invalid height');
+    if (Number.isNaN(weight)) throw new Error('invalid weight');
+
+    return calculateBmi(height, weight);
+}
+
+console.log(parseArgs(process.argv));
