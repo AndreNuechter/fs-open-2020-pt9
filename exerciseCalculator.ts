@@ -16,7 +16,7 @@ interface ExerciseReport {
     average: number;
 }
 
-function calculateExercises(target: number, hours: Array<number>): ExerciseReport {
+export function calculateExercises(target: number, hours: Array<number>): ExerciseReport {
     const periodLength = hours.length;
     const trainingDays = hours.filter(Boolean).length;
     const average = hours.reduce((total: number, day: number) => total + day, 0) / periodLength;
@@ -39,7 +39,7 @@ function calculateRating(target: number, average: number): Rating {
     return { value: 1, description: 'You crushed your goal' };
 }
 
-function parseArgs(args: Array<string>) {
+function parseArgsExcercise(args: Array<string>) {
     if (args.length < 4) throw new Error('too few arguments');
 
     const [target, ...hours] = args.slice(2).map(Number);
@@ -50,4 +50,8 @@ function parseArgs(args: Array<string>) {
     return calculateExercises(target, hours);
 }
 
-console.log(parseArgs(process.argv));
+try {
+    console.log(parseArgsExcercise(process.argv));
+} catch (err) {
+    console.warn('exercises: ', err);
+}

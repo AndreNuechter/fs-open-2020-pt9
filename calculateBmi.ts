@@ -1,6 +1,6 @@
 type BMIClassification = 'Underweight' | 'Normal (healthy weight)' | 'Overweight' | 'Obesity (Class 1)' | 'Obesity (Class 2)' | 'Obesity (Class 3)';
 
-function calculateBmi(height: number, weight: number): BMIClassification {
+export function calculateBmi(height: number, weight: number): BMIClassification {
     const result = weight / ((height * 0.01) ** 2);
 
     if (result < 18.5) return 'Underweight';
@@ -12,7 +12,7 @@ function calculateBmi(height: number, weight: number): BMIClassification {
     return 'Obesity (Class 3)';
 }
 
-function parseArgs(args: Array<string>) {
+function parseArgsBmi(args: Array<string>) {
     if (args.length > 4) throw new Error('too many arguments');
     if (args.length < 4) throw new Error('too few arguments');
 
@@ -24,4 +24,8 @@ function parseArgs(args: Array<string>) {
     return calculateBmi(height, weight);
 }
 
-console.log(parseArgs(process.argv));
+try {
+    console.log(parseArgsBmi(process.argv));
+} catch (err) {
+    console.warn('bmi: ', err);
+}
