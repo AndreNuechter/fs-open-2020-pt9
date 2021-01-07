@@ -4,14 +4,48 @@ export interface Diagnosis {
     latin?: string;
 }
 
-export enum Gender {
-    female = "female",
-    male = "male",
-    other = "other"
+interface BasicEntry {
+    id: string;
+    type: string;
+    date: string;
+    specialist: string;
+    description: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Entry {
+interface SickLeave {
+    startDate: string;
+    endDate: string;
+}
+
+interface OccupationalHealthCareEntry extends BasicEntry {
+    type: 'OccupationalHealthcare';
+    employerName: string;
+    diagnosisCodes?: Array<string>;
+    sickLeave?: SickLeave;
+}
+
+interface Discharge {
+    date: string;
+    criteria: string;
+}
+
+interface HospitalEntry extends BasicEntry {
+    type: 'Hospital';
+    diagnosisCodes: Array<string>;
+    discharge: Discharge;
+}
+
+interface HealthCheckEntry extends BasicEntry {
+    type: 'HealthCheck';
+    healthCheckRating: number;
+}
+
+export type Entry = OccupationalHealthCareEntry | HospitalEntry | HealthCheckEntry;
+
+export enum Gender {
+    Female = "female",
+    Male = "male",
+    Other = "other"
 }
 
 export interface Patient {

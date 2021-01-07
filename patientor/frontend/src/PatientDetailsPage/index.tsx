@@ -6,6 +6,7 @@ import { Patient } from "../types";
 import { apiBaseUrl } from "../constants";
 import { getPatientDetails, useStateValue } from "../state";
 import HealthRatingBar from "../components/HealthRatingBar";
+import EntriesList from "./Entries";
 
 const PatientDetailsPage: React.FC = () => {
     const id = useParams<{ id: string; }>().id;
@@ -22,7 +23,7 @@ const PatientDetailsPage: React.FC = () => {
                 console.error(e);
             }
         };
-        if (!patient) {
+        if (!patient || !patient.ssn) {
             fetchPatientDetails();
         }
     }, [dispatch, id, patient]);
@@ -53,9 +54,12 @@ const PatientDetailsPage: React.FC = () => {
                         <Table.Cell>{patient.gender}</Table.Cell>
                         <Table.Cell>{patient.ssn}</Table.Cell>
                         <Table.Cell>{patient.occupation}</Table.Cell>
-                        <Table.Cell>{patient.entries
-                            ? <ul>{patient.entries.map(e => <li key={e}>{e}</li>)}</ul>
-                            : '-'}</Table.Cell>
+                        <Table.Cell>
+                            {patient.entries.length
+                                ? <EntriesList entries={patient.entries} />
+                                : '-'
+                            }
+                        </Table.Cell>
                         <Table.Cell>
                             <HealthRatingBar showText={false} rating={1} />
                         </Table.Cell>
