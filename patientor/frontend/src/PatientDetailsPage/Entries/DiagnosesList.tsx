@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStateValue } from '../../state';
 
-const DiagnosisCodes: React.FC<{ diagnosisCodes: string[]; }> = ({ diagnosisCodes }) => {
+const DiagnosisCodes: React.FC<{ diagnosisCodes: string[] }> = ({ diagnosisCodes }) => {
     const [{ diagnoses }] = useStateValue();
 
     return <>

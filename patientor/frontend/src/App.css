@@ -1,0 +1,55 @@
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 14px 0;
+}
+
+.add-entry-form label {
+    display: block;
+    margin: 0 0 14px 0;
+    color: rgba(0, 0, 0, .87);
+    font-size: .92857143em;
+    font-weight: 700;
+    text-transform: none;
+}
+
+.add-entry-form label div:first-child {
+    margin-bottom: .28571429rem;
+}
+
+.add-entry-form input:not([type="checkbox"]),
+.add-entry-form select,
+.add-entry-form textarea {
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    margin: 0;
+    outline: 0;
+    line-height: 1.21428571em;
+    padding: .67857143em 1em;
+    font-size: 1em;
+    background: #fff;
+    border: 1px solid rgba(34, 36, 38, .15);
+    color: rgba(0, 0, 0, .87);
+    border-radius: .28571429rem;
+    box-shadow: 0 0 0 0 transparent inset;
+    transition: color .1s ease, border-color .1s ease;
+    width: 100%;
+}
+
+.add-entry-form input[type="checkbox"] {
+    height: 1px;
+}
+
+.validation-error {
+    color: red;
+}
+
+.entries-list {
+    padding: 0
+}
+
+.entries-list>li {
+    border: 1px solid black;
+    list-style-type: none;
+    padding: 4px 8px;
+    margin-bottom: 4px;
+}

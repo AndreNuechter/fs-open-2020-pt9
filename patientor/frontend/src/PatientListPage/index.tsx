@@ -12,17 +12,13 @@ import { Link } from "react-router-dom";
 
 const PatientListPage: React.FC = () => {
     const [{ patients }, dispatch] = useStateValue();
-
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
     const [error, setError] = React.useState<string | undefined>();
-
     const openModal = (): void => setModalOpen(true);
-
     const closeModal = (): void => {
         setModalOpen(false);
         setError(undefined);
     };
-
     const submitNewPatient = async (values: PatientFormValues) => {
         try {
             const { data: newPatient } = await axios.post<Patient>(
@@ -33,7 +29,7 @@ const PatientListPage: React.FC = () => {
             closeModal();
         } catch (e) {
             console.error(e.response.data);
-            setError(e.response.data.error);
+            setError(e.response.data);
         }
     };
 

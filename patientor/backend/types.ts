@@ -17,7 +17,7 @@ interface SickLeave {
     endDate: string;
 }
 
-interface OccupationalHealthCareEntry extends BasicEntry {
+export interface OccupationalHealthCareEntry extends BasicEntry {
     type: 'OccupationalHealthcare';
     employerName: string;
     diagnosisCodes?: Array<string>;
@@ -29,13 +29,13 @@ interface Discharge {
     criteria: string;
 }
 
-interface HospitalEntry extends BasicEntry {
+export interface HospitalEntry extends BasicEntry {
     type: 'Hospital';
     diagnosisCodes: Array<string>;
     discharge: Discharge;
 }
 
-interface HealthCheckEntry extends BasicEntry {
+export interface HealthCheckEntry extends BasicEntry {
     type: 'HealthCheck';
     healthCheckRating: number;
 }

@@ -4,7 +4,7 @@ import { Diagnosis, Patient } from "../types";
 import { Action } from "./reducer";
 
 export type State = {
-    patients: { [id: string]: Patient; };
+    patients: { [id: string]: Patient };
     diagnoses: Array<Diagnosis>;
 };
 

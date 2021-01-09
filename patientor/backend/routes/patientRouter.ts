@@ -22,8 +22,17 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     try {
-        const newPatient = toNewPatient(req.body);
-        res.send(patientService.addEntry(newPatient));
+        res.send(patientService.addPatient(toNewPatient(req.body)));
+    } catch (err) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        res.status(400).send(err.message);
+    }
+});
+
+router.post('/:id/entries', (req, res) => {
+    const { id } = req.params;
+    try {
+        res.send(patientService.addEntryToPatient(id, req.body));
     } catch (err) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         res.status(400).send(err.message);

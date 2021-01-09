@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { NewPatient, Gender } from "../types";
+import { v4 as getId } from 'uuid';
+import { NewPatient, Patient } from "../types";
+import { isDate, isGender, isString } from './validators';
 
-export default function toNewPatient(requestBody: any): NewPatient {
+export default function toNewPatient(requestBody: any): Patient {
     const {
         name,
         dateOfBirth,
@@ -28,6 +30,7 @@ export default function toNewPatient(requestBody: any): NewPatient {
     }
 
     return {
+        id: getId(),
         name,
         dateOfBirth,
         ssn,
@@ -35,16 +38,4 @@ export default function toNewPatient(requestBody: any): NewPatient {
         occupation,
         entries
     };
-}
-
-function isString(val: any): boolean {
-    return typeof val === 'string';
-}
-
-function isDate(val: string): boolean {
-    return /\d{4}-\d{2}-\d{2}/.test(val);
-}
-
-function isGender(val: any): boolean {
-    return Object.values(Gender).includes(val);
 }
